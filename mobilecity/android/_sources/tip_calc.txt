@@ -1,0 +1,428 @@
+Tip Calculator
+===================================
+
+.. contents:: Contents
+
+Feature Scenario
+--------------------
+
+.. code-block:: gerkin
+
+  Feature: Basic tip calculation 
+    Scenario: Calculate single check tip amount and total.
+      Given that I want to calculate the amount of the tip
+      When I enter $50 at 17% tip
+      Then I should see $8.50 for the tip amount 
+      And $58.50 for the total amount
+  
+I know this looks weird.  The format of this text is called Gerken.  This format is 
+used by business to describe a process they want to preform. 
+
+
+Project Setup
+---------------------
+
+To start the project we will use the gliter8 template that we installed in the setup chapter.  
+This command will ask a set of questions to setup the base of our project.  I have my answers to the 
+questions below. Anyting in square brackets are the default values in this template. 
+
+.. code-block:: bash
+  
+  $ ~/bin/g8 jberkel/android-app
+  Template for Android apps in Scala 
+
+  package [my.android.project]: com.cajuncode.tipcalculator
+  name [My Android Project]: TipCalculator
+  main_activity [MainActivity]: 
+  scala_version [2.9.2]: 2.10.0
+  api_level [10]: 
+  useProguard [true]: 
+  scalatest_version [1.8]: 1.9.1
+
+  Template applied in ./tip-calculator
+  
+The first thing we give the project is the package bundle identifier of the project.  You can change this at any time
+untill you submit the app to the play store.  After that if you chnage this id it will be a new app and not an update. 
+Next is the name of the app.  Use Camel case for naming the project and all Class files.  Camel case is a naming 
+convention where each word in a name is capitalized and there is no space between words.  Next we need to name the 
+starting screen for the app. Personally I would use HomeActivity or MainActivity depending on how many Activities the 
+app will have. We will discusses activities in the next section as we start laying out the interface.  After we set the 
+activity we need to tell it what version of Scala we want to ues.  Then we select the Android API level we want to use. 
+This basicly is what version of android you are targeting with the application.  We want to use Proguard, it makes our 
+apps smaller by removing unsused classes.  Last is the version of Scalatest we are going to use to write our tests.
+
+This creates a working project for us.  
+
+.. image:: images/tip_calc1.png
+   :scale: 50
+
+Lets create the IDE project settings.  
+
+.. code-block:: bash
+   
+   $ sbt gen-idea
+   
+Next lauhch IntelliJ and click Open Project.  Navigate to the directory we created the tipCalcualtor app.
+Click on the directory name, then click open. The IDE should open with the project enabled.  
+
+
+Creating the CalculatorCore
+------------------------------
+
+Now we need to create a test file.  In the project window, expand the src directory.  Next expand the test directory and right click on the scala diretory. Select the Scala Class option.    
+
+.. image:: images/CalcSpecs.png
+   :scale: 50
+   
+Now we need to add the folling lines to the scala test file we just created.
+
+.. code-block:: scala
+    :linenos:
+    
+    import org.scalatest.FunSpec
+    import org.scalatest.matchers.ShouldMatchers
+    
+    class CalculatorSpecs extends FunSpec with ShouldMatchers {
+      describe("a Tip Calculator") {
+      }
+    }
+    
+Before we go and write the first test.  we need to create the basic object we are testing.   
+
+1. In the project window, expand the src directory.  
+2. Then expand the main directory.  
+3. Right click on the scala directory.  
+4. Select New > Package...
+5. Give the pckage the name models
+6. Click OK
+7. Right click on the models package we just created.
+8. select New > Scala Class...
+9. Name the class CalculatorCore
+10. Set the type to be Object.
+11. Click OK
+
+.. code-block:: scala
+    :linenos:
+	
+	package com.cajuncode.tipcalculator.models
+
+	object CalculatorCore {
+
+	}
+	
+
+Now that we have an object to test, lets create our first test.  Open the CalculatorSpecs file and add the following lines inside the describe block.
+
+.. code-block:: scala
+   :linenos:
+   
+   it("should calculate the tip of 100.00"){
+     val calc = CalculatorCore
+     var result = calc.getTip(100.00, 10)
+     result should equal(10.00)
+   }
+ 
+Ok lets run the test
+
+.. code-block:: bash
+   
+   $sbt test
+   [info] Compiling 2 Scala sources to /Users/alley/Projects/scala_android_book/code/tip-calculator/target/scala-2.10/test-classes...
+   [error] /Users/alley/Projects/scala_android_book/code/tip-calculator/src/test/scala/CalculatorSpecs.scala:9: value getTip is not a member of object com.cajuncode.tipcalculator.models.CalculatorCore
+   [error]       var result = calc.getTip(100.00, 10)
+   [error]                         ^
+   [error] one error found
+   [error] (TipCalculator/test:compile) Compilation failed
+   [error] Total time: 21 s, completed Apr 17, 2013 12:31:53 AM
+   
+This tells us that the method needs to be defined.  So that is where we are going to start.
+
+.. code-block:: scala
+   :linenos:
+   
+   def getTip(bill:Double, tip_percentage:Int):Double = {
+      0.00
+   }
+
+run the test again.  
+
+.. code-block:: bash
+
+   $ sbt test
+   [info] Loading global plugins from /Users/alley/.sbt/plugins
+   [info] Loading project definition from /Users/alley/Projects/scala_android_book/code/tip-calculator/project
+   [info] Set current project to TipCalculator (in build file:/Users/alley/Projects/scala_android_book/code/tip-calculator/)
+   [info] Wrote /Users/alley/Projects/scala_android_book/code/tip-calculator/target/scala-2.10/src_managed/main/scala/com/cajuncode/tipcalculator/TR.scala
+   [info] Compiling 1 Scala source to /Users/alley/Projects/scala_android_book/code/tip-calculator/target/scala-2.10/classes...
+   [info] Compiling 2 Scala sources to /Users/alley/Projects/scala_android_book/code/tip-calculator/target/scala-2.10/test-classes...
+   [info] Specs:
+   [info] a spec 
+   [info] - should do something
+   [info] CalculatorSpecs:
+   [info] a Tip Calculator 
+   [info] - should calculate the tip of 100.00 *** FAILED ***
+   [info]   0.0 did not equal 10.0 (CalculatorSpecs.scala:10)
+   [error] Failed: : Total 2, Failed 1, Errors 0, Passed 1, Skipped 0
+   [error] Failed tests:
+   [error] 	CalculatorSpecs
+   
+Lets refactor the method to return a live value.  Change the getTip method to look like below.
+
+.. code-block:: scala
+   :linenos:
+   
+   def getTip(bill:Double, tip_percentage:Int): Double = (bill * (tip_percentage / 100.0))
+
+Now lets run the test again.
+ 
+.. code-block:: bash
+   
+   $ sbt test
+   [info] Loading global plugins from /Users/alley/.sbt/plugins
+   [info] Loading project definition from /Users/alley/Projects/scala_android_book/code/tip-calculator/project
+   [info] Set current project to TipCalculator (in build file:/Users/alley/Projects/scala_android_book/code/tip-calculator/)
+   [info] Wrote /Users/alley/Projects/scala_android_book/code/tip-calculator/target/scala-2.10/src_managed/main/scala/com/cajuncode/tipcalculator/TR.scala
+   [info] Compiling 1 Scala source to /Users/alley/Projects/scala_android_book/code/tip-calculator/target/scala-2.10/classes...
+   [info] Specs:
+   [info] a spec 
+   [info] - should do something
+   [info] CalculatorSpecs:
+   [info] a Tip Calculator 
+   [info] - should calculate the tip of 100.00
+   [info] Passed: : Total 2, Failed 0, Errors 0, Passed 2, Skipped 0
+   [success] Total time: 4 s, completed Apr 17, 2013 1:00:00 AM  
+
+And we have passing our first passing test.  So lets create one more test.  
+
+In the feature story we have at the start of the chapter,  We use a 50 dollar balance with a 17% tip so lets write that as a test.
+
+Open the CalculatorSpecs file and add this below the closing bracket after the it.  
+
+.. code-block:: scala
+   :linenos:
+   
+   it("should calculate the tip of 50 dollars at 17% to equal 8.5"){
+     val calc = CalculatorCore
+     var result = calc.getTip(50.00, 17)
+     result should equal(8.5)
+   }
+   
+Now run the test.  
+
+.. code-block:: bash
+
+  $ sbt test
+  [info] Loading global plugins from /Users/alley/.sbt/plugins
+  [info] Loading project definition from /Users/alley/Projects/scala_android/code/tip-calculator/project
+  [info] Set current project to TipCalculator (in build file:/Users/alley/Projects/scala_android/code/tip-calculator/)
+  [info] Wrote /Users/alley/Projects/scala_android/code/tip-calculator/target/scala-2.10/src_managed/main/scala/com/cajuncode/tipcalculator/TR.scala
+  [info] Compiling 3 Scala sources and 1 Java source to /Users/alley/Projects/scala_android/code/tip-calculator/target/scala-2.10/classes...
+  [warn] there were 4 feature warnings; re-run with -feature for details
+  [warn] one warning found
+  [info] Compiling 2 Scala sources to /Users/alley/Projects/scala_android/code/tip-calculator/target/scala-2.10/test-classes...
+  [info] Specs:
+  [info] a spec 
+  [info] - should do something
+  [info] CalculatorSpecs:
+  [info] a Tip Calculator 
+  [info] - should calculate the tip of 100.00
+  [info] - should calculate the tip of 50 dollars at 17% to equal 8.5
+  [info] Passed: : Total 3, Failed 0, Errors 0, Passed 3, Skipped 0
+  [success] Total time: 20 s, completed Apr 17, 2013 9:03:06 AM
+  
+Now that we know the calculation works, Time to work on the UI.
+ 
+Designing the User Interface
+------------------------------
+
+Open the main.xml file under src/main/res/layout.  When the file first opens in design mode. you see a palette on the right side of the screen.  On the left side, The component tree shows all the components in the layout.  Also on the left side is the property window.  This is where you will change properties such as text and values for the components. 
+
+.. image:: images/tc_main_inital.png
+   :scale: 50
+
+Here is the xml use in the view.  it would be a lot of steps if we built the UI though the designer.
+
+.. literalinclude:: code/tip-calculator/src/main/res/layout/main.xml
+    :linenos:
+    :language: xml
+
+With the UI Layed out this it what it looks like in the designer.
+
+.. image:: images/tc_main_designed.png
+   :scale: 50    
+    
+OK we are getting close enough to try and running the app and see it.  But first we need to fix a 
+piece of code so the app will launch.  Under src/main/scala/MainActivity.scala, we need to comment out
+the findView call on line 11 like so.
+
+.. code-block:: scala
+   :linenos:
+   
+   package com.cajuncode.tipcalculator
+
+   import _root_.android.app.Activity
+   import _root_.android.os.Bundle
+
+   class MainActivity extends Activity with TypedActivity {
+     override def onCreate(bundle: Bundle) {
+       super.onCreate(bundle)
+       setContentView(R.layout.main)
+
+       //findView(TR.textview).setText("hello, world!")
+     }
+   }
+   
+
+
+Before we can run the app we need to start the emulator
+
+.. code-block:: bash
+
+   $ emulator -avd ics
+   
+This will start the emulator and load the ics avd.  
+
+With the emulator started we want to push our application to the emulator.  On a different terminal window or command prompt run the following command.
+
+.. code-block:: bash
+
+   $ sbt android:start-emulator
+   [info] Loading global plugins from /Users/alley/.sbt/plugins
+   [info] Loading project definition from /Users/alley/Projects/scala_android/code/tip-calculator/project
+   [info] Set current project to TipCalculator (in build file:/Users/alley/Projects/scala_android/code/tip-calculator/)
+   [info] Wrote /Users/alley/Projects/scala_android/code/tip-calculator/target/scala-2.10/src_managed/main/scala/com/cajuncode/tipcalculator/TR.scala
+   ProGuard, version 4.6
+   ProGuard is released under the GNU General Public License. You therefore
+   must ensure that programs that link to it (scala, ...)
+   carry the GNU General Public License as well. Alternatively, you can
+   apply for an exception with the author of ProGuard.
+   The output seems up to date
+       (skipping file '.gitkeep' due to ANDROID_AAPT_IGNORE pattern '.*')
+   [info] Packaging /Users/alley/Projects/scala_android/code/tip-calculator/target/tipcalculator-0.1.apk
+   [info] 	pkg: /data/local/tmp/tipcalculator-0.1.apk
+   [info] Success
+   [info] 1847 KB/s (181817 bytes in 0.096s)
+   [info] Starting: Intent { act=android.intent.action.MAIN cmp=com.cajuncode.tipcalculator/.MainActivity }
+   [success] Total time: 17 s, completed Apr 17, 2013 3:26:29 PM
+   
+This packages the application into an apk and deploys it to the emulator.  Rerunning this command will redeploy the app.  It is a good practice not to restart the emulator each deployment due to is painful boot time.  
+
+.. image:: images/tc_emulator_1.png
+   :scale: 50
+   
+Now we see what we've built, It's time to bind the components to the views.  
+Go back to the MainActivity 
+
+.. code-block:: scala
+   :linenos:
+   
+   ...
+   import android.widget.{TextView, SeekBar, EditText}
+
+   class MainActivity extends Activity with TypedActivity {
+
+     private lazy val bill:EditText = findView(TR.billAmount)
+     private lazy val percentage:SeekBar = findView(TR.percent)
+     private lazy val percentText:TextView = findView(TR.txtPercent)
+     private lazy val tipAmount:TextView = findView(TR.tipAmount)
+     private lazy val totalAmount:TextView = findView(TR.totalAmount)
+     
+     ...
+     
+Lets add variables to point to the components we want to bind. findView is a TypedActivity method to add a helper 
+to do object casting.  
+
+With the variables bound we can turn our attention to onCreate.  This method is run when the Activity is first started.  
+An Activity is what android calls a window that is to be displayed.
+
+.. code-block:: scala
+   :linenos:
+   
+   override def onCreate(bundle: Bundle) {
+     super.onCreate(bundle)
+     setContentView(R.layout.main)
+
+     bill.addTextChangedListener( new TextWatcher {
+       def beforeTextChanged(value: CharSequence, start: Int, count: Int, after: Int) {}
+
+       def onTextChanged(value: CharSequence, start: Int, before: Int, count: Int) {}
+
+       def afterTextChanged(value: Editable) {
+         updateTip()
+       }
+     } )
+     percentage.setOnSeekBarChangeListener(new OnSeekBarChangeListener {
+       def onProgressChanged(seekbar: SeekBar, progress: Int, fromUser: Boolean) {
+         updateTip()
+         percentText.setText(progress.toString + "%")
+       }
+
+       def onStopTrackingTouch(seekbar: SeekBar) {}
+
+       def onStartTrackingTouch(seekbar: SeekBar) {}
+     })
+   }
+
+In this method we use inner classes to implement two listeners.  Each Listener is a contract that states that a set of methods 
+will be created.  This is offten called an Interface.  The only real events we care about listening for is the after text has 
+changed in the billAmount edit box and when the seek bar has changed.  For both of these events we want to call updateTip method.
+
+.. code-block:: scala
+   :linenos: 
+   
+   def updateTip(){
+     val billText:String = bill.getText().toString
+     val amount = convert(billText)
+
+     val tip = CalculatorCore.getTip(amount, percentage.getProgress)
+     tipAmount.setText(formatDecimal(tip))
+     totalAmount.setText(formatDecimal(amount + tip))
+   }
+   def convert(value:String):Double = if(value.isEmpty) 00 else value.toDouble
+   def formatDecimal(value:Double):String = "%1.2f" format value
+   
+With updateTip defined all we do is read in the value from the edit box and convert it to a string. Next we will convert the text to a
+double precision floating point number or double.  This conversion has been wrapped into a function to handle the case of updating the
+field to empty.  Then using the model we created, calculated the tip amount. Now all that is left is to display the tip and the total back to the user.  The formatDecimal just formats the amounts calculated to a currency format with two decimal places.  
+
+.. warning::
+  java.lang.NoSuchMethodError: scala.collection.immutable.StringLike.toString
+  
+  As I was working on this. I stumbled upon a bug in Scala with Proguard. When proguard runs trimming the code it removes a method
+  necessary for the convertion to Double from string to work. To fix this you need to make a change to the proguard config in 
+  the Build.scala file under project.  Under object General add a new val proguardOptions with the keep class string.  Then add that to 
+  the fullAndroidSettings as seen below. This is a known bug in Scala 2.10.0
+  
+  .. code-block:: scala
+    
+    val proguardOptions = Seq(
+      proguardOption in Android := "-keep class scala.collection.SeqLike {\n    public protected *;\n}"
+     )
+    lazy val fullAndroidSettings =
+      General.settings ++
+      AndroidProject.androidSettings ++
+      TypedResources.settings ++
+      proguardSettings ++
+      proguardOptions ++
+      AndroidManifestGenerator.settings ++
+      AndroidMarketPublish.settings ++ Seq (
+        keyalias in Android := "change-me",
+        libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
+      )
+	  
+Now lets run the app again.  with the emulator running type the following command.
+
+.. code-block:: bash
+   
+   $ sbt android:start-emulator
+
+.. image:: images/tc_emulator_complete.png
+   :scale: 50
+
+
+..   Acceptance Testing the Front end
+    -----------------------------------
+
+
+..  Packaging it up and shiping it out
+  -------------------------------------

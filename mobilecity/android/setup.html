@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Setting Up &mdash; Mobile Development with Scala</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Mobile Development with Scala" href="index.html" />
+    <link rel="next" title="Tip Calculator" href="tip_calc.html" />
+    <link rel="prev" title="Welcome to Mobile Development with Scala!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tip_calc.html" title="Tip Calculator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Mobile Development with Scala!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Mobile Development with Scala</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="setting-up">
+<h1>Setting Up<a class="headerlink" href="#setting-up" title="Permalink to this headline">¶</a></h1>
+<p>Developing Android applications with Scala can be fun and rewarding.  the code will be cleaner and simpler than the equilvant Java code.
+To get started, we need to install a few things.  First off, the Java 6 JDK needs to be installed.</p>
+<div class="section" id="install-java-1-6">
+<h2>Install Java 1.6<a class="headerlink" href="#install-java-1-6" title="Permalink to this headline">¶</a></h2>
+<p>Go to <a class="reference external" href="http://www.oracle.com/technetwork/java/index.html">http://www.oracle.com/technetwork/java/index.html</a>  and select Java SE 6 Update 43 JDK
+or just go <a class="reference external" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk6downloads-1902814.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk6downloads-1902814.html</a></p>
+<p>If you are on a Mac just type javac into a terminal to download java6 from apple.</p>
+<p>Just follow the instructions and prompts from the java installer.</p>
+<p>You have to use JDK 6 Android will not work if compiled with JDK 7.</p>
+</div>
+<div class="section" id="installing-android-sdk">
+<h2>Installing Android SDK<a class="headerlink" href="#installing-android-sdk" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a></li>
+<li>Click on &#8220;Use and existing IDE&#8221;</li>
+<li>Download the SDK.</li>
+<li>Extract the SDK to the root of your home directory.</li>
+<li>Download the NDK</li>
+<li>Extract the NDK to the root of your home directory.</li>
+</ol>
+<div class="section" id="on-mac-and-linux">
+<h3>On Mac and Linux<a class="headerlink" href="#on-mac-and-linux" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Edit .bash_profile like this.</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">ANDROID_HOME</span><span class="o">=</span>~/android-sdk
+<span class="nb">export </span><span class="nv">ANDROID_NDK_HOME</span><span class="o">=</span>~/android-ndk
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$ANDROID_HOME</span>/tools:<span class="nv">$ANDROID_HOME</span>/platform-tools:<span class="nv">$ANDROID_NDK_HOME</span>:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="on-windows">
+<h3>On Windows<a class="headerlink" href="#on-windows" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Right Click &#8220;My Computer&#8221;</li>
+<li>Click on the &#8220;Advacned Tab&#8221;</li>
+<li>Click the &#8220;Envirnment Variables&#8221; button at the bottom of the window</li>
+<li>Click the &#8220;New...&#8221; button under User Variables section.</li>
+<li>Set ANDROID_HOME as the variable Name and the Path to the SDK as the value</li>
+<li>Click OK</li>
+<li>Click The &#8220;New...&#8221; button again</li>
+<li>Set ANDROID_NDK_HOME as the variable Name and the Path to the NDK as the value</li>
+<li>Click OK.</li>
+<li>If PATH is defined under the user block click &#8220;Edit...&#8221; else click &#8220;New...&#8221;</li>
+<li>Add &#8220;%ANDROID_HOME%/tools;%ANDROID_HOME%/platform-tools;%ANDROID_NDK_HOME%;&#8221; to the Value section of path.</li>
+<li>Click OK.</li>
+<li>Click Apply.</li>
+<li>Click OK.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="installing-an-android-platform">
+<h2>Installing an Android Platform<a class="headerlink" href="#installing-an-android-platform" title="Permalink to this headline">¶</a></h2>
+<p>Now we have the basic android tools installed.  We need to install the platforms</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>android
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/android_update.png"><img alt="_images/android_update.png" src="_images/android_update.png" style="width: 350.5px; height: 250.5px;" /></a>
+<p>Place a chehckmark next to &#8220;Android 4.0.3 (API 15)&#8221;.  This is Ice Creame Sandwitch version of android.  I would select any other
+versions you wish to target as well.  Click the Install Packages button to download the platforms.  You will be asked to accept
+the licences.</p>
+</div>
+<div class="section" id="creating-an-android-virtual-device">
+<h2>Creating an Android Virtual Device<a class="headerlink" href="#creating-an-android-virtual-device" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have the platforms installed, we need to create a virtual device.  Android comes with a tool called the
+avd manager.  To start the manager you type the command below.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>android avd
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/android_avd.png"><img alt="_images/android_avd.png" src="_images/android_avd.png" style="width: 351.0px; height: 250.5px;" /></a>
+<p>With the manager up, we can start creating the avd.</p>
+<ol class="arabic simple">
+<li>Click the &#8220;New...&#8221; button on the right side of the manager.</li>
+</ol>
+<p><a class="reference internal" href="_images/android_avd_new.png"><img alt="avd_new" src="_images/android_avd_new.png" style="width: 364.0px; height: 387.5px;" /></a></p>
+<ol class="arabic simple" start="2">
+<li>Give the avd a name.  I ususally use the code name for the version of android that will be installed.</li>
+<li>Select Nexus S from the device list.</li>
+</ol>
+<p><a class="reference internal" href="_images/avd_device_list.png"><img alt="avd_device" src="_images/avd_device_list.png" style="width: 246.0px; height: 192.0px;" /></a></p>
+<ol class="arabic simple" start="4">
+<li>Change the target name to Android 4.0.3</li>
+</ol>
+<p><a class="reference internal" href="_images/avd_api_list.png"><img alt="avd_api" src="_images/avd_api_list.png" style="width: 246.0px; height: 138.0px;" /></a></p>
+<ol class="arabic simple" start="5">
+<li>Set the SD Card Size to 32 Mib</li>
+</ol>
+<p><a class="reference internal" href="_images/avd_filled_out.png"><img alt="avd_filled" src="_images/avd_filled_out.png" style="width: 364.0px; height: 387.5px;" /></a></p>
+<ol class="arabic simple" start="6">
+<li>Click OK</li>
+<li>Select the AVD you Created.</li>
+<li>Click Start...</li>
+</ol>
+<p><a class="reference internal" href="_images/avd_start.png"><img alt="avd_start" src="_images/avd_start.png" style="width: 364.0px; height: 274.0px;" /></a></p>
+<ol class="arabic simple" start="9">
+<li>Click Launch</li>
+</ol>
+<p><a class="reference internal" href="_images/emulator.png"><img alt="emulator" src="_images/emulator.png" style="width: 386.0px; height: 437.5px;" /></a></p>
+</div>
+<div class="section" id="installing-scala">
+<h2>Installing Scala<a class="headerlink" href="#installing-scala" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://www.scala-lang.org/downloads">http://www.scala-lang.org/downloads</a></li>
+<li>Download the package for your system.</li>
+<li>Extract the file to the home directory</li>
+</ol>
+<div class="section" id="id1">
+<h3>On Mac and Linux<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Edit .bash_profile like this.</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">SCALA_HOME</span><span class="o">=</span>~/scala
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$SCALA_HOME</span>/bin:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>On Windows<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Right Click &#8220;My Computer&#8221;</li>
+<li>Click on the &#8220;Advacned Tab&#8221;</li>
+<li>Click the &#8220;Envirnment Variables&#8221; button at the bottom of the window</li>
+<li>Click the &#8220;New...&#8221; button under User Variables section.</li>
+<li>Set SCALA_HOME as the variable Name and the Path to the Scala as the value</li>
+<li>Click OK</li>
+<li>If PATH is defined under the user block click &#8220;Edit...&#8221; else click &#8220;New...&#8221;</li>
+<li>Add &#8220;%SCALA_HOME%/bin;&#8221; to the Value section of path.</li>
+<li>Click OK.</li>
+<li>Click Apply.</li>
+<li>Click OK.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="installing-sbt">
+<h2>Installing SBT<a class="headerlink" href="#installing-sbt" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html">http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html</a></li>
+<li>Download the zip package</li>
+<li>Extract the package into the home directory</li>
+</ol>
+<div class="section" id="id3">
+<h3>On Mac and Linux<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Edit .bash_profile like this.</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">SBT_HOME</span><span class="o">=</span>~/sbt
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$SBT_HOME</span>/bin:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>On Windows<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Right Click &#8220;My Computer&#8221;</li>
+<li>Click on the &#8220;Advacned Tab&#8221;</li>
+<li>Click the &#8220;Envirnment Variables&#8221; button at the bottom of the window</li>
+<li>Click the &#8220;New...&#8221; button under User Variables section.</li>
+<li>Set SBT_HOME as the variable Name and the Path to the SBT as the value</li>
+<li>Click OK</li>
+<li>If PATH is defined under the user block click &#8220;Edit...&#8221; else click &#8220;New...&#8221;</li>
+<li>Add &#8220;%SSBT_HOME%/bin;&#8221; to the Value section of path.</li>
+<li>Click OK.</li>
+<li>Click Apply.</li>
+<li>Click OK.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="install-project-templates">
+<h2>Install Project Templates<a class="headerlink" href="#install-project-templates" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="https://github.com/downloads/n8han/conscript/conscript-0.4.1.jar">https://github.com/downloads/n8han/conscript/conscript-0.4.1.jar</a></li>
+<li>Run this command</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>java -jar conscript-0.4.1.jar
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>If you are on Linux or Mac Run</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl https://raw.github.com/n8han/conscript/master/setup.sh | sh
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Now we can install giter8 by running:</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>cs n8han/giter8
+</pre></div>
+</div>
+<p>This gives us the g8 command for our templates we will use to create the projects.</p>
+</div>
+<div class="section" id="adding-ide-settings">
+<h2>Adding IDE settings<a class="headerlink" href="#adding-ide-settings" title="Permalink to this headline">¶</a></h2>
+<p>For our development we are using InteliJ IDE with the scala plugin.  Also we are going to use an SBT Plugin to add
+ide project config generation to the tool chain.</p>
+<div class="section" id="installing-intellij-ide">
+<h3>Installing IntelliJ IDE<a class="headerlink" href="#installing-intellij-ide" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://www.jetbrains.com/idea/download/index.html">http://www.jetbrains.com/idea/download/index.html</a></li>
+<li>Download the Community Edition.</li>
+<li>Run the installer</li>
+<li>Complete the installation process</li>
+</ol>
+</div>
+<div class="section" id="installing-scala-plugin-for-intellij">
+<h3>Installing Scala Plugin for IntelliJ<a class="headerlink" href="#installing-scala-plugin-for-intellij" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Open IntelliJ if not already open.</li>
+<li>Open the Preferences.</li>
+<li>On the Left hand side, Find and click on Plugins.</li>
+<li>Click the Browse Repository button</li>
+<li>In the search box type Scala</li>
+<li>Right click Scala and select Download and install</li>
+<li>Do the same for SBT</li>
+<li>Restart the IDE</li>
+</ol>
+</div>
+<div class="section" id="configure-sbt-to-generate-intellij-project">
+<h3>Configure SBT to generate IntelliJ project<a class="headerlink" href="#configure-sbt-to-generate-intellij-project" title="Permalink to this headline">¶</a></h3>
+<p>Open the plugins file under the .sbt directory in the home directory.  If it&#8217;s not there just added it.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vim ~/.sbt/plugins/build.sbt
+</pre></div>
+</div>
+<p>Once we have the file open we need to add this line below:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="n">addSbtPlugin</span><span class="o">(</span><span class="s">&quot;com.github.mpeltonen&quot;</span> <span class="o">%</span> <span class="s">&quot;sbt-idea&quot;</span> <span class="o">%</span> <span class="s">&quot;1.3.0&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>The next time we run sbt it will download this file and have the command available to any project.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Setting Up</a><ul>
+<li><a class="reference internal" href="#install-java-1-6">Install Java 1.6</a></li>
+<li><a class="reference internal" href="#installing-android-sdk">Installing Android SDK</a><ul>
+<li><a class="reference internal" href="#on-mac-and-linux">On Mac and Linux</a></li>
+<li><a class="reference internal" href="#on-windows">On Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installing-an-android-platform">Installing an Android Platform</a></li>
+<li><a class="reference internal" href="#creating-an-android-virtual-device">Creating an Android Virtual Device</a></li>
+<li><a class="reference internal" href="#installing-scala">Installing Scala</a><ul>
+<li><a class="reference internal" href="#id1">On Mac and Linux</a></li>
+<li><a class="reference internal" href="#id2">On Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installing-sbt">Installing SBT</a><ul>
+<li><a class="reference internal" href="#id3">On Mac and Linux</a></li>
+<li><a class="reference internal" href="#id4">On Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-project-templates">Install Project Templates</a></li>
+<li><a class="reference internal" href="#adding-ide-settings">Adding IDE settings</a><ul>
+<li><a class="reference internal" href="#installing-intellij-ide">Installing IntelliJ IDE</a></li>
+<li><a class="reference internal" href="#installing-scala-plugin-for-intellij">Installing Scala Plugin for IntelliJ</a></li>
+<li><a class="reference internal" href="#configure-sbt-to-generate-intellij-project">Configure SBT to generate IntelliJ project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Mobile Development with Scala!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tip_calc.html"
+                        title="next chapter">Tip Calculator</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/setup.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tip_calc.html" title="Tip Calculator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Mobile Development with Scala!"
+             >previous</a> |</li>
+        <li><a href="index.html">Mobile Development with Scala</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Allan Davis.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

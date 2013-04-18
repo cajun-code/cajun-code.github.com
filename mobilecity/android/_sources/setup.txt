@@ -1,0 +1,262 @@
+Setting Up
+==============
+
+Developing Android applications with Scala can be fun and rewarding.  the code will be cleaner and simpler than the equilvant Java code. 
+To get started, we need to install a few things.  First off, the Java 6 JDK needs to be installed.  
+
+Install Java 1.6
+--------------------
+
+Go to http://www.oracle.com/technetwork/java/index.html  and select Java SE 6 Update 43 JDK
+or just go http://www.oracle.com/technetwork/java/javase/downloads/jdk6downloads-1902814.html
+
+If you are on a Mac just type javac into a terminal to download java6 from apple. 
+
+Just follow the instructions and prompts from the java installer. 
+
+You have to use JDK 6 Android will not work if compiled with JDK 7.
+
+
+
+Installing Android SDK
+------------------------
+
+1. Go to http://developer.android.com/sdk/index.html 
+2. Click on "Use and existing IDE"
+3. Download the SDK.  
+4. Extract the SDK to the root of your home directory.  
+5. Download the NDK
+6. Extract the NDK to the root of your home directory.
+
+On Mac and Linux
+^^^^^^^^^^^^^^^^^^
+  
+1. Edit .bash_profile like this.
+
+.. code-block:: bash
+  
+  export ANDROID_HOME=~/android-sdk
+  export ANDROID_NDK_HOME=~/android-ndk
+  export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH
+
+On Windows
+^^^^^^^^^^^^^^  
+  
+1. Right Click "My Computer" 
+2. Click on the "Advacned Tab"
+3. Click the "Envirnment Variables" button at the bottom of the window
+4. Click the "New..." button under User Variables section.
+5. Set ANDROID_HOME as the variable Name and the Path to the SDK as the value
+6. Click OK
+7. Click The "New..." button again
+8. Set ANDROID_NDK_HOME as the variable Name and the Path to the NDK as the value
+9. Click OK.
+10. If PATH is defined under the user block click "Edit..." else click "New..."
+11. Add "%ANDROID_HOME%/tools;%ANDROID_HOME%/platform-tools;%ANDROID_NDK_HOME%;" to the Value section of path.
+12. Click OK.
+13. Click Apply.
+14. Click OK.
+  
+ 
+Installing an Android Platform 
+---------------------------------
+
+Now we have the basic android tools installed.  We need to install the platforms 
+
+.. code-block:: bash
+  
+  $ android
+  
+.. image:: images/android_update.png
+   :scale: 50
+
+Place a chehckmark next to "Android 4.0.3 (API 15)".  This is Ice Creame Sandwitch version of android.  I would select any other
+versions you wish to target as well.  Click the Install Packages button to download the platforms.  You will be asked to accept 
+the licences.  
+
+Creating an Android Virtual Device
+-------------------------------------
+
+Now that we have the platforms installed, we need to create a virtual device.  Android comes with a tool called the
+avd manager.  To start the manager you type the command below.
+
+.. code-block:: bash
+  
+  $ android avd
+  
+.. image:: images/android_avd.png
+   :scale: 50
+
+With the manager up, we can start creating the avd.  
+  
+1. Click the "New..." button on the right side of the manager.
+
+|avd_new|
+
+2. Give the avd a name.  I ususally use the code name for the version of android that will be installed.
+3. Select Nexus S from the device list. 
+
+|avd_device|
+
+4. Change the target name to Android 4.0.3 
+
+|avd_api|
+
+5. Set the SD Card Size to 32 Mib 
+
+|avd_filled|
+
+6. Click OK
+7. Select the AVD you Created.
+8. Click Start... 
+
+|avd_start|
+
+9. Click Launch 
+
+|emulator|
+
+.. |avd_new| image:: images/android_avd_new.png
+   :scale: 50
+.. |avd_device| image:: images/avd_device_list.png 
+   :scale: 50
+.. |avd_api| image:: images/avd_api_list.png
+   :scale: 50
+.. |avd_filled| image:: images/avd_filled_out.png
+   :scale: 50
+.. |avd_start| image:: images/avd_start.png
+   :scale: 50
+.. |emulator| image:: images/emulator.png
+   :scale: 50
+
+Installing Scala
+------------------
+
+1. Go to http://www.scala-lang.org/downloads 
+2. Download the package for your system.  
+3. Extract the file to the home directory
+
+On Mac and Linux
+^^^^^^^^^^^^^^^^^^
+  
+1. Edit .bash_profile like this.
+
+.. code-block:: bash
+
+  export SCALA_HOME=~/scala
+  export PATH=$SCALA_HOME/bin:$PATH
+  
+On Windows
+^^^^^^^^^^^^^^  
+  
+1. Right Click "My Computer" 
+2. Click on the "Advacned Tab"
+3. Click the "Envirnment Variables" button at the bottom of the window
+4. Click the "New..." button under User Variables section.
+5. Set SCALA_HOME as the variable Name and the Path to the Scala as the value
+6. Click OK
+#. If PATH is defined under the user block click "Edit..." else click "New..."
+#. Add "%SCALA_HOME%/bin;" to the Value section of path.
+#. Click OK.
+#. Click Apply.
+#. Click OK.
+
+
+Installing SBT
+---------------
+
+1. Go to http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html
+2. Download the zip package 
+3. Extract the package into the home directory
+
+On Mac and Linux
+^^^^^^^^^^^^^^^^^^
+  
+1. Edit .bash_profile like this.
+
+.. code-block:: bash
+
+  export SBT_HOME=~/sbt
+  export PATH=$SBT_HOME/bin:$PATH
+  
+On Windows
+^^^^^^^^^^^^^^  
+  
+1. Right Click "My Computer" 
+2. Click on the "Advacned Tab"
+3. Click the "Envirnment Variables" button at the bottom of the window
+4. Click the "New..." button under User Variables section.
+5. Set SBT_HOME as the variable Name and the Path to the SBT as the value
+6. Click OK
+#. If PATH is defined under the user block click "Edit..." else click "New..."
+#. Add "%SSBT_HOME%/bin;" to the Value section of path.
+#. Click OK.
+#. Click Apply.
+#. Click OK.
+  
+Install Project Templates
+----------------------------
+
+1. Go to https://github.com/downloads/n8han/conscript/conscript-0.4.1.jar
+2. Run this command
+
+.. code-block:: bash
+   
+   $ java -jar conscript-0.4.1.jar
+  
+3. If you are on Linux or Mac Run
+
+.. code-block:: bash
+   
+   $ curl https://raw.github.com/n8han/conscript/master/setup.sh | sh
+   
+4. Now we can install giter8 by running:
+
+.. code-block:: bash
+
+   $ cs n8han/giter8
+   
+This gives us the g8 command for our templates we will use to create the projects.  
+
+
+Adding IDE settings
+-----------------------
+For our development we are using InteliJ IDE with the scala plugin.  Also we are going to use an SBT Plugin to add 
+ide project config generation to the tool chain.  
+
+Installing IntelliJ IDE
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Go to http://www.jetbrains.com/idea/download/index.html
+2. Download the Community Edition. 
+3. Run the installer
+4. Complete the installation process
+
+Installing Scala Plugin for IntelliJ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Open IntelliJ if not already open.
+2. Open the Preferences. 
+3. On the Left hand side, Find and click on Plugins.
+4. Click the Browse Repository button
+5. In the search box type Scala
+6. Right click Scala and select Download and install
+7. Do the same for SBT
+8. Restart the IDE
+
+Configure SBT to generate IntelliJ project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open the plugins file under the .sbt directory in the home directory.  If it's not there just added it.  
+
+.. code-block:: bash
+
+   $ vim ~/.sbt/plugins/build.sbt
+  
+Once we have the file open we need to add this line below:
+
+.. code-block:: scala
+
+   addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.3.0")
+
+The next time we run sbt it will download this file and have the command available to any project.
