@@ -23,7 +23,7 @@ author = 'Allan Davis'
 copyright = '2013, ' + author         
 
 # Change this to your blog root URL (required for RSS feed)
-website = 'http://cajun-code.github.io/blog/html'                              
+website = 'http://www.cajuncode.com/blog/html'                              
 
 # **************************************************************
 # More tweaks you can do
