@@ -11,10 +11,10 @@ import tinkerer.paths
 project = 'Cajun Code'                   
 
 # Change this to the tagline of your blog
-tagline = 'Mobile Development done Right'                  
+tagline = 'Mobile Development Served Cajun Style'                  
 
 # Change this to the description of your blog
-description = 'Mobile development from the swamps of Louisiana'
+description = 'Mobile development blog from a cajun coder'
 
 # Change this to your name
 author = 'Allan Davis'
