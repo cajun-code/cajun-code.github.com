@@ -12,7 +12,7 @@ Code portfolio:
 
 * Github_
 * Bitbucket_
-* TapFrame_ (Apps I have been involved with the development.)
+* TapFame_ (Apps I have been involved with the development.)
 
 
 Social Networks: 
@@ -26,6 +26,6 @@ Social Networks:
 .. _bitbucket: https://bitbucket.org/cajun_code
 .. _twitter: https://twitter.com/cajun_code
 .. _coderwall: https://coderwall.com/cajun-code
-.. _tapframe: https://tapfame.com/cajun_code/
+.. _tapfame: https://tapfame.com/cajun_code/
 .. _linkedin: http://www.linkedin.com/in/cajuncode/
 
