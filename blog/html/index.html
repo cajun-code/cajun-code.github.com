@@ -74,13 +74,71 @@
                   <a href="#">Home</a>
                 </li>
               <li class="main-nav">
-                  <a href="pages/about.html">About Me</a>
+                  <a href="pages/mobile_city.html">MobileCity</a>
                 </li>
               <li class="main-nav">
-                  <a href="pages/mobile_city.html">MobileCity</a>
+                  <a href="pages/about.html">About Me</a>
                 </li>
               </ul>
           </nav><div class="main-container"><div class="main wrapper clearfix"><article><div class="timestamp postmeta">
+            <span>July 17, 2013</span>
+        </div>
+        <div class="section" id="cross-platform-game-development">
+<h1><a href="2013/07/17/cross_platform_game_development.html">Cross Platform Game Development</a></h1>
+<p>I have started working on a new Hobby.  Trying to develop a game.  This has been somthing I have wanted to do for a long time.</p>
+<p>Recently I found a library I like called Cocos2d-X.  It is a C++ game framework that can be uesd for cross platform game dev.  I have written my first test case already.  I like it.</p>
+<div class="section" id="links">
+<h2>Links</h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cocos2d-x.org">Cocos2dx</a></li>
+<li><a class="reference external" href="http://www.raywenderlich.com/33750/cocos2d-x-tutorial-for-ios-and-android-getting-started">Tutorial1</a> Getting Started</li>
+<li><a class="reference external" href="http://www.raywenderlich.com/33752/cocos2d-x-tutorial-for-ios-and-android-space-game">Tutorial2</a> Space Shooter</li>
+</ul>
+<a class="reference internal image-reference" href="_images/spacecase.png"><img alt="../../../_images/spacecase.png" src="_images/spacecase.png" style="width: 340.8px; height: 192.0px;"/></a>
+</div>
+</div>
+        <div class="postmeta">
+        <div class="author">
+            <span>Posted by Allan Davis</span>
+        </div>
+        
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="tags/mobile.html">mobile</a>, <a href="tags/ios.html">ios</a>, <a href="tags/android.html">android</a>, <a href="tags/c__.html">C++</a>, <a href="tags/games.html">games</a></span>
+        </div>
+        </div><div class="separator post_separator"></div><div class="timestamp postmeta">
+            <span>May 30, 2013</span>
+        </div>
+        <div class="section" id="sbt-android-and-the-new-build-tools">
+<h1><a href="2013/05/30/sbt_android_build_tools.html">SBT Android and the New Build Tools</a></h1>
+<p>I updated my Android platform tools to vesion 17 and installed the new Build Tools.  These new build tools break the sbt android plugin.  This is because they moved some of the tooling to live under a new “build-tools” directory.</p>
+<p>To fix this I wrote a ruby script to create a set of sim links from the build tools back to platform tools.  All you need to have to run this is:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">ANDROID_SDK_HOME</span> <span class="o">=</span> &lt;Where you have the SDK Installed&gt;
+<span class="nv">$ </span>curl https://gist.github.com/cajun-code/5674831/raw/13adb1670b5c7ee763f51a730e62f5feb4924c4a/patch_android.rb | ruby
+</pre></div>
+</div>
+<p>The code is:</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span class="no">Dir</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">absolute_path</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'ANDROID_SDK_HOME'</span><span class="o">]</span><span class="si">}</span><span class="s2">/build-tools/17.0.0/&quot;</span><span class="p">))</span>
+<span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">system</span> <span class="s2">&quot;ln -s </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'ANDROID_SDK_HOME'</span><span class="o">]</span><span class="si">}</span><span class="s2">/build-tools/17.0.0/</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">'ANDROID_SDK_HOME'</span><span class="o">]</span><span class="si">}</span><span class="s2">/platform-tools/</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+        <div class="postmeta">
+        <div class="author">
+            <span>Posted by Allan Davis</span>
+        </div>
+        <div class="categories">
+            <span>
+                Filed under:
+                <a href="categories/android.html">android</a></span>
+        </div>
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="tags/sbt.html">sbt</a>, <a href="tags/android.html">android</a>, <a href="tags/ruby.html">ruby</a></span>
+        </div>
+        </div><div class="separator post_separator"></div><div class="timestamp postmeta">
             <span>May 13, 2013</span>
         </div>
         <div class="section" id="laissez-les-bons-temps-rouler">
@@ -102,6 +160,10 @@ As well I may add a few nuggets of server side Ruby or Python and they affect mo
     </div></article><aside class="sidebar"><section><div class="widget">
     <h1>Recent Posts</h1>
     <ul><li>
+            <a href="2013/07/17/cross_platform_game_development.html">Cross Platform Game Development</a>
+        </li><li>
+            <a href="2013/05/30/sbt_android_build_tools.html">SBT Android and the New Build Tools</a>
+        </li><li>
             <a href="2013/05/13/hello_all.html">Laissez les bons temps rouler</a>
         </li></ul>
 </div>
