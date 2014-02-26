@@ -1,5 +1,7 @@
-Adding Ruby to iOS Apps
-=======================
+Continuous Integration for IOS: Adding Ruby to iOS Apps
+========================================================
+
+
 
 
 
