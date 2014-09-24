@@ -1,7 +1,7 @@
+.. contents::
+
 Erebus
 ======
-
-.. contents::
 
 Overview
 ---------

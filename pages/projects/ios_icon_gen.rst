@@ -1,7 +1,7 @@
+.. contents::
+
 iOS Icon Gen
 ==============
-
-.. contents::
 
 Overview
 -----------

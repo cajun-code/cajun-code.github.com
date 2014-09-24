@@ -1,7 +1,7 @@
+.. contents::
+
 DatRest
 ========
-
-.. contents::
 
 Overview
 ---------

@@ -1,13 +1,9 @@
-F.T.L. Effect
-==================
-
-
 .. contents::
 
+F.T.L. Effect - In Development
+===============================
 
 Overview
 -----------
 
-In Development
-===============
 
